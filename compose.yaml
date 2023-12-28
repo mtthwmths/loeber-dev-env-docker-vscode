@@ -1,0 +1,17 @@
+services:
+  loeber-fastapi:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: loeber-fastapi-image
+    container_name: loeber-fastapi-container
+    ports:
+      - 8000:80
+      - 5678:5678
+    volumes:
+      - .:/code
+    depends_on:
+      - redis
+  redis:
+    image: redis:alpine
+    container_name: loeber-redis-container
